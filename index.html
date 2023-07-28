@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="256.png" type="image/png">
+    <title>Eggy115</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a; /* Dark background color */
+            color: #e0e0e0; /* Light text color */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Make the body take up at least the full viewport height */
+        }
+        header, footer {
+            background-color: #4caf50; /* Green header and footer background color */
+            padding: 10px;
+            color: #fff;
+            text-align: center;
+            animation: changeHue 10s infinite alternate; /* Apply the hue animation */
+        }
+        @keyframes changeHue {
+            0% {
+                filter: hue-rotate(0deg); /* Starting hue rotation value */
+            }
+            100% {
+                filter: hue-rotate(360deg); /* Ending hue rotation value (360deg for a full cycle) */
+            }
+        }
+        main {
+            display: flex; /* Use flexbox to create a two-column layout */
+            max-width: 1000px;
+            margin: 20px auto;
+            flex-wrap: wrap; /* Allow elements to wrap within the flex container */
+            justify-content: space-between; /* Align items at the edges */
+        }
+        .profile {
+            flex: 1 0 250px; /* Allow the profile to grow, but not shrink below 250px */
+            display: flex;
+            flex-direction: column;
+        }
+        .profile-inner,
+        .blog {
+            padding: 20px;
+            background-color: #292929; /* Darker content background color */
+            border: 1px solid #444;
+            border-radius: 5px;
+        }
+        .profile-picture {
+            max-width: 150px;
+            border-radius: 50%;
+            display: block;
+            margin: 0 auto 20px;
+        }
+        .info {
+            text-align: left;
+        }
+        .info p {
+            margin: 5px 0;
+        }
+        .description {
+            font-size: 1.1em;
+            line-height: 1.6;
+            text-align: justify; /* Justified text alignment */
+        }
+        .blogs-container {
+            flex: 1 0 600px; /* Allow the blogs to grow, but not shrink below 600px */
+            max-width: 600px; /* Limit the width of the blog container */
+            margin-left: 20px; /* Add some space between the profile and blogs */
+            display: flex;
+            flex-direction: column;
+        }
+        .blog {
+            background-color: #292929; /* Use the same background color as the profile */
+            color: #e0e0e0;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #444;
+            border-radius: 5px;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #4caf50; /* Green footer background color */
+            color: #fff;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            display: block; /* Initially show the footer */
+            transition: transform 0.3s ease-in-out; /* Add smooth transition when showing/hiding */
+        }
+        .footer-hidden {
+            transform: translateY(100%); /* Move the footer outside the viewport */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Eggy115</h1>
+    </header>
+    <main>
+        <div class="profile">
+            <div class="profile-inner">
+                <img class="profile-picture" src="mainpfp.png" alt="Profile Picture"> <!-- Update the path to the profile picture -->
+                <div class="info">
+                    <p>Name: Eggy115</p>
+                    <p>Location: New York, USA</p>
+                    <p>Email: eggy115@example.com</p>
+                </div>
+                <div class="description">
+                    <p>Hello! Welcome to my website. Here is some text. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
+                </div>
+            </div>
+        </div>
+        <div class="blogs-container">
+            <div class="blog">
+                <h2>Blog Post 1</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel ultricies est.</p>
+            </div>
+            <div class="blog">
+                <h2>Blog Post 2</h2>
+                <p>Phasellus ac felis tincidunt, volutpat nunc a, bibendum libero.</p>
+            </div>
+            <div class="blog">
+                <h2>Blog Post 1</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel ultricies est.</p>
+            </div>
+            <div class="blog">
+                <h2>Blog Post 2</h2>
+                <p>Phasellus ac felis tincidunt, volutpat nunc a, bibendum libero.</p>
+            </div>
+            <div class="blog">
+                <h2>Blog Post 1</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel ultricies est.</p>
+            </div>
+            <div class="blog">
+                <h2>Blog Post 2</h2>
+                <p>Phasellus ac felis tincidunt, volutpat nunc a, bibendum libero.</p>
+            </div>                        
+            <!-- Add more blog posts as needed -->
+        </div>
+    </main>
+    <footer class="show-footer">
+        <p>&copy; 2023 Eggy115. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let prevScrollPos = window.pageYOffset;
+        const footer = document.querySelector('footer');
+
+        window.addEventListener('scroll', () => {
+            const currentScrollPos = window.pageYOffset;
+
+            if (currentScrollPos > prevScrollPos && currentScrollPos > 50) {
+                // Scrolling down and not near the top, hide the footer
+                footer.classList.add('footer-hidden');
+            } else {
+                // Scrolling up or near the top, show the footer
+                footer.classList.remove('footer-hidden');
+            }
+
+            prevScrollPos = currentScrollPos;
+        });
+    </script>
+</body>
+</html>
